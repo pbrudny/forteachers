@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  devise_for :users, controllers: { registrations: 'registrations' }
+  resources :users, only: [:index, :edit, :update, :show, :destroy]
+
+  root to: 'home#index'
+
   resources :products
   resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
